@@ -1,4 +1,3 @@
-import {Cli} from "./services/cli";
+import {cli} from "./utils/cli";
 
-const cli = new Cli()
-cli.run()
+cli()

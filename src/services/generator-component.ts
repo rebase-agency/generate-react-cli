@@ -20,7 +20,7 @@ export class GeneratorComponent {
     try {
       createFileSync(`${this.path}/${this.componentName}/index.ts`)
       const template = exportTemplate.replaceAll(NAME, this.componentName)
-      writeFileSync(`./test/${this.componentName}/index.ts`, template)
+      writeFileSync(`${this.path}/${this.componentName}/index.ts`, template)
     } catch (e) {
       console.error(e)
     }
@@ -34,7 +34,13 @@ export class GeneratorComponent {
     }
   }
 
-  generate = () => {
+  generateReact = () => {
+    this.generateTsComponent()
+    this.generateExportFile()
+    this.generateModuleCss()
+  }
+
+  generateStorybook = () => {
     this.generateTsComponent()
     this.generateExportFile()
     this.generateModuleCss()
