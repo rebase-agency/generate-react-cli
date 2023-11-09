@@ -5,6 +5,7 @@ import docsTemplate from "../templates/docs"
 import readmeTemplate from "../templates/readme"
 import storiesTemplate from "../templates/stories";
 import { NAME } from "../core";
+import {pathParse} from "../utils/pathParse";
 
 export class GeneratorComponent {
   constructor(private pathProp: string, private componentNameProp: string) {}
@@ -36,7 +37,7 @@ export class GeneratorComponent {
   }
 
   private configureHandle = () => {
-    this.path = this.pathProp
+    this.path = pathParse(this.pathProp)
     this.componentName = this.componentNameProp
 
     const existsDir = existsSync(`${this.path}/${this.componentName}`)
