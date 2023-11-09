@@ -1,6 +1,6 @@
 import { NAME } from "../core";
 
-export default `import styles from "./${ NAME }.module.css"
+export default `import styles from "./${ NAME }.module.css";
 
 interface ${ NAME }Props {};
 

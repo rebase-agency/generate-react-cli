@@ -1,48 +1,50 @@
 import { createFileSync, writeFileSync } from 'fs-extra';
-import componentTsTemplate from "../templates/componentTsTemplate";
-import exportTemplate from "../templates/exportTemplate";
+import componentTemplate from "../templates/component";
+import exportTemplate from "../templates/export";
+import docsTemplate from "../templates/docs"
+import readmeTemplate from "../templates/readme"
+import storiesTemplate from "../templates/stories";
 import {NAME} from "../core";
 
 export class GeneratorComponent {
   constructor(private path: string, private componentName: string) {}
+  private source = `${this.path}/${this.componentName}/`
 
-  private generateTsComponent = () => {
+  private generateUtil = (template: string, file: string) => {
     try {
-      createFileSync(`${this.path}/${this.componentName}/${this.componentName}.ts`)
-      const template = componentTsTemplate.replaceAll(NAME, this.componentName)
-      writeFileSync(`${this.path}/${this.componentName}/${this.componentName}.ts`, template)
+      const templateParse = template.replaceAll(NAME, this.componentName)
+      createFileSync(`${this.source}${file}`)
+      writeFileSync(`${this.source}/${file}`, templateParse)
     } catch (e) {
       console.error(e)
     }
+  }
+
+  private generateComponent = (storybook?: boolean) => {
+    const importReact = `import { React } from "React";\n`
+    this.generateUtil(`${storybook ? importReact : ''}${componentTemplate}`, `${this.componentName}.ts`)
   }
 
   private generateExportFile = () => {
-    try {
-      createFileSync(`${this.path}/${this.componentName}/index.ts`)
-      const template = exportTemplate.replaceAll(NAME, this.componentName)
-      writeFileSync(`${this.path}/${this.componentName}/index.ts`, template)
-    } catch (e) {
-      console.error(e)
-    }
+    this.generateUtil(exportTemplate, `index.ts`)
   }
 
   private generateModuleCss = () => {
-    try {
-      createFileSync(`${this.path}/${this.componentName}/${this.componentName}.module.css`)
-    } catch (e) {
-      console.error(e)
-    }
+    this.generateUtil('', `${this.componentName}.module.css`)
   }
 
   generateReact = () => {
-    this.generateTsComponent()
+    this.generateComponent()
     this.generateExportFile()
     this.generateModuleCss()
   }
 
   generateStorybook = () => {
-    this.generateTsComponent()
+    this.generateComponent(true)
     this.generateExportFile()
     this.generateModuleCss()
+    this.generateUtil(docsTemplate, `Docs.mdx`)
+    this.generateUtil(readmeTemplate, `README.md`)
+    this.generateUtil(storiesTemplate, `${this.componentName}.stories.ts`)
   }
 }
