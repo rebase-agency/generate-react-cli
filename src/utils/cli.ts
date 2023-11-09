@@ -5,9 +5,9 @@ const packageJson = require('../../package.json')
 export const cli = () => {
   const program = new Command();
   program
-    .name('generate-react-cli')
+    .name(packageJson.name)
     .version(packageJson.version)
-    .description('CLI for generate React components.')
+    .description(packageJson.description)
 
   program
     .argument("<component>", "The component name.")

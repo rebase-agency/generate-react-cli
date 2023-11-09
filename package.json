@@ -3,6 +3,19 @@
   "version": "0.1.0",
   "author": "rebase",
   "license": "MIT",
+  "description": "CLI for generate React component files.",
+  "keywords": [
+    "react",
+    "cli"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rebase-agency/generate-react-cli"
+  },
+  "homepage": "https://github.com/rebase-agency/generate-react-cli",
+  "engines": {
+    "node": ">=16"
+  },
   "files": [
     "build"
   ],
