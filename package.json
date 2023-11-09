@@ -1,6 +1,6 @@
 {
   "name": "@rebase-agency/generate-react-cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "rebase",
   "license": "MIT",
   "description": "CLI for generate React component files.",
@@ -17,11 +17,11 @@
     "node": ">=16"
   },
   "files": [
-    "build"
+    "bin"
   ],
-  "main": "./build/index.js",
-  "module": "./build/index.js",
-  "types": "./build/index.d.ts",
+  "main": "bin/index.js",
+  "module": "bin/index.js",
+  "types": "./bin/index.d.ts",
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
     "commander": "^11.1.0",

@@ -6,7 +6,7 @@
     "allowSyntheticDefaultImports": true,
     "target": "es2021",
     "sourceMap": false,
-    "outDir": "build",
+    "outDir": "bin",
     "baseUrl": "/",
     "incremental": true,
     "skipLibCheck": true,
