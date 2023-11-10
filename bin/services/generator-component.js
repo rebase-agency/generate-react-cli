@@ -20,10 +20,10 @@ class GeneratorComponent {
         this.componentNameProp = componentNameProp;
         this.componentName = '';
         this.path = '';
-        this.generateFile = (template, file, noFolder) => {
+        this.generateFile = (template, file, noFolder, noCheck) => {
             const source = noFolder ? `${this.path}/${file}` : `${this.path}/${this.componentName}/${file}`;
             const existsFile = (0, fs_extra_1.existsSync)(source);
-            if (!existsFile) {
+            if (!existsFile || noCheck) {
                 try {
                     const templateParse = template.replaceAll(core_1.NAME, this.componentName);
                     (0, fs_extra_1.createFileSync)(source);
@@ -77,6 +77,17 @@ class GeneratorComponent {
             this.generateFile(context_1.default.hookContext, `use${this.componentName}Context.tsx`);
             this.generateFile(context_1.default.types, "types.ts");
             this.generateFile(context_1.default.exp, "index.ts");
+        };
+        this.generateCommonExport = () => {
+            this.configureHandle();
+            const list = (0, fs_extra_1.readdirSync)(this.path, { withFileTypes: true });
+            let content = '';
+            list.map((dirent) => {
+                if (dirent.isDirectory()) {
+                    content = `${content}${export_1.default.replaceAll(core_1.NAME, dirent.name)}\n`;
+                }
+            });
+            this.generateFile(content, 'index.ts', true, true);
         };
     }
 }

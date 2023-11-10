@@ -1,4 +1,4 @@
-import {createFileSync, existsSync, writeFileSync} from 'fs-extra';
+import {createFileSync, existsSync, writeFileSync, readdirSync} from 'fs-extra';
 import componentTemplate from "../templates/component";
 import exportTemplate from "../templates/export";
 import docsTemplate from "../templates/docs"
@@ -14,10 +14,10 @@ export class GeneratorComponent {
   private componentName: string = ''
   private path: string = ''
 
-  private generateFile = (template: string, file: string, noFolder?: boolean) => {
+  private generateFile = (template: string, file: string, noFolder?: boolean, noCheck?: boolean) => {
     const source = noFolder ? `${this.path}/${file}` : `${this.path}/${this.componentName}/${file}`
     const existsFile = existsSync(source)
-    if (!existsFile) {
+    if (!existsFile || noCheck) {
       try {
         const templateParse = template.replaceAll(NAME, this.componentName)
         createFileSync(source)
@@ -77,5 +77,17 @@ export class GeneratorComponent {
     this.generateFile(contextTemplates.hookContext, `use${this.componentName}Context.tsx`)
     this.generateFile(contextTemplates.types, "types.ts")
     this.generateFile(contextTemplates.exp, "index.ts")
+  }
+
+  generateCommonExport = () => {
+    this.configureHandle()
+    const list = readdirSync(this.path, { withFileTypes: true })
+    let content = '';
+    list.map((dirent) => {
+      if (dirent.isDirectory()) {
+        content = `${content}${exportTemplate.replaceAll(NAME, dirent.name)}\n`
+      }
+    })
+    this.generateFile(content, 'index.ts', true, true)
   }
 }

@@ -19,7 +19,9 @@ export const cli = () => {
     .action((component, path, options) => {
       const generatorComponent = new GeneratorComponent(path ?? '.', component)
 
-      if (options.storybook) {
+      if (component === '_') {
+        generatorComponent.generateCommonExport()
+      } else if (options.storybook) {
         generatorComponent.generateStorybook()
       } else if (options.hook) {
         generatorComponent.generateHook()
