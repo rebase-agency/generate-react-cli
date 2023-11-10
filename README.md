@@ -2,15 +2,21 @@
 
 ![version](https://img.shields.io/npm/v/@rebase-agency/generate-react-cli) [![License](https://img.shields.io/npm/l/express.svg)](https://github.com/rebase-agency/generate-react-cli/blob/master/LICENSE)
 
+## Installation
+
+```shell
+npm install -g @rebase-agency/generate-react-cli
+```
+
 ## Usage
-```sh
-@rebase-agency/generate-react-cli [options] <component> [path]
+```shell
+generate-react [options] <component> [path]
 ```
 
 ## Generate Components
 
-```sh
-  npx @rebase-agency/generate-react-cli Box ./src/components
+```shell
+  npx generate-react Box ./src/components
 ```
 
 This command will create a folder with your component name within your default (e.g. **src/components**) directory, and its corresponding files.
@@ -36,7 +42,7 @@ This command will create a folder with your component name within your default (
   <tr>
     <td width="20%"><b>-s</b></td>
     <td width="80%">
-      Generate the files for storybook project.  
+      Generate the component files for storybook project.  
     </td>
   </tr>
 </table>

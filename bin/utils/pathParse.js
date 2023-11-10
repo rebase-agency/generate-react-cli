@@ -5,3 +5,4 @@ const pathParse = (path) => {
     return path[path.length - 1] === "/" ? path.slice(0, path.length - 1) : path;
 };
 exports.pathParse = pathParse;
+//# sourceMappingURL=pathParse.js.map

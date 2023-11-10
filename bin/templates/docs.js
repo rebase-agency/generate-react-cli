@@ -13,3 +13,4 @@ import * as Stories from "./${core_1.NAME}.stories";
 ## Props
 <Controls />
 `;
+//# sourceMappingURL=docs.js.map

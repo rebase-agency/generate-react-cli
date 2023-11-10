@@ -9,8 +9,8 @@ import {pathParse} from "../utils/pathParse";
 
 export class GeneratorComponent {
   constructor(private pathProp: string, private componentNameProp: string) {}
-  private componentName
-  private path
+  private componentName: string = ''
+  private path: string = ''
 
   private generateUtil = (template: string, file: string) => {
     const source = `${this.path}/${this.componentName}/${file}`

@@ -1,16 +1,13 @@
 {
   "compilerOptions": {
-    "module": "CommonJS",
-    "declaration": true,
-    "removeComments": true,
-    "allowSyntheticDefaultImports": true,
-    "target": "es2021",
-    "sourceMap": false,
+    "rootDir": "src",
     "outDir": "bin",
-    "baseUrl": "/",
-    "incremental": true,
-    "skipLibCheck": true,
-    "resolveJsonModule": true
+    "strict": true,
+    "target": "es2021",
+    "module": "commonjs",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node"
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*spec.ts"]

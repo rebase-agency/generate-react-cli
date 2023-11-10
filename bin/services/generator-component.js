@@ -1,18 +1,23 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GeneratorComponent = void 0;
 const fs_extra_1 = require("fs-extra");
-const component_1 = require("../templates/component");
-const export_1 = require("../templates/export");
-const docs_1 = require("../templates/docs");
-const readme_1 = require("../templates/readme");
-const stories_1 = require("../templates/stories");
+const component_1 = __importDefault(require("../templates/component"));
+const export_1 = __importDefault(require("../templates/export"));
+const docs_1 = __importDefault(require("../templates/docs"));
+const readme_1 = __importDefault(require("../templates/readme"));
+const stories_1 = __importDefault(require("../templates/stories"));
 const core_1 = require("../core");
 const pathParse_1 = require("../utils/pathParse");
 class GeneratorComponent {
     constructor(pathProp, componentNameProp) {
         this.pathProp = pathProp;
         this.componentNameProp = componentNameProp;
+        this.componentName = '';
+        this.path = '';
         this.generateUtil = (template, file) => {
             const source = `${this.path}/${this.componentName}/${file}`;
             try {
@@ -63,3 +68,4 @@ class GeneratorComponent {
     }
 }
 exports.GeneratorComponent = GeneratorComponent;
+//# sourceMappingURL=generator-component.js.map

@@ -11,3 +11,4 @@ export const ${core_1.NAME} = ({ props }: ${core_1.NAME}Props) => {
   );
 };
 `;
+//# sourceMappingURL=component.js.map
