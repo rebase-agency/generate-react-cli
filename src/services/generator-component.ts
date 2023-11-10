@@ -14,8 +14,8 @@ export class GeneratorComponent {
   private componentName: string = ''
   private path: string = ''
 
-  private generateFile = (template: string, file: string, noInFolder?: boolean) => {
-    const source = noInFolder ? `${this.path}/${file}` : `${this.path}/${this.componentName}/${file}`
+  private generateFile = (template: string, file: string, noFolder?: boolean) => {
+    const source = noFolder ? `${this.path}/${file}` : `${this.path}/${this.componentName}/${file}`
     const existsFile = existsSync(source)
     if (!existsFile) {
       try {
@@ -30,9 +30,8 @@ export class GeneratorComponent {
     }
   }
 
-  private generateComponent = (storybook?: boolean) => {
-    const importReact = `import React from "react";\n`
-    this.generateFile(`${storybook ? importReact : ''}${componentTemplate}`, `${this.componentName}.tsx`)
+  private generateComponent = (storybook?: boolean, noFolder?: boolean) => {
+    this.generateFile(componentTemplate(storybook, noFolder), `${this.componentName}.tsx`, noFolder)
   }
 
   private generateExportFile = () => {
@@ -48,11 +47,13 @@ export class GeneratorComponent {
     this.componentName = this.componentNameProp
   }
 
-  generateReact = () => {
+  generateReact = (noFolder?: boolean) => {
     this.configureHandle()
-    this.generateComponent()
-    this.generateExportFile()
-    this.generateModuleCss()
+    this.generateComponent(false, noFolder)
+    if (!noFolder) {
+      this.generateExportFile()
+      this.generateModuleCss()
+    }
   }
 
   generateStorybook = () => {

@@ -69,4 +69,10 @@ This command will create a folder with your component name in the specified path
       Generate the context files for project.
     </td>
   </tr>
+  <tr>
+    <td width="20%"><b>-nf</b></td>
+    <td width="80%">
+      Generate only one React component (without export and css module files).
+    </td>
+  </tr>
 </table>

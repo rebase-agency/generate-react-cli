@@ -15,6 +15,7 @@ export const cli = () => {
     .option("-s, --storybook", "Generate the component files for storybook project.")
     .option("-c, --context", "Generate the context files for project.")
     .option("-hk, --hook", "Generate the hook file with default code.")
+    .option("-nf --noFolder", "Generate only one React component.")
     .action((component, path, options) => {
       const generatorComponent = new GeneratorComponent(path ?? '.', component)
 
@@ -25,7 +26,7 @@ export const cli = () => {
       } else if (options.context) {
         generatorComponent.generateContext()
       } else {
-        generatorComponent.generateReact()
+        generatorComponent.generateReact(options.noFolder)
       }
     })
 

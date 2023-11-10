@@ -1,8 +1,9 @@
 import { NAME } from "../core";
 
-export default `import styles from "./${NAME}.module.css";
+const componentTemplate = (storybook?: boolean, noFolder?: boolean) => `${storybook ? `import React from "react";
+` : ''}${!noFolder ? `import styles from "./${NAME}.module.css";
 
-interface ${NAME}Props {};
+` : ''}interface ${NAME}Props {};
 
 export const ${NAME} = ({}: ${NAME}Props) => {
   return (
@@ -10,3 +11,5 @@ export const ${NAME} = ({}: ${NAME}Props) => {
   );
 };
 `
+
+export default componentTemplate

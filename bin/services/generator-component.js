@@ -20,10 +20,10 @@ class GeneratorComponent {
         this.componentNameProp = componentNameProp;
         this.componentName = '';
         this.path = '';
-        this.generateFile = (template, file, noInFolder) => {
-            const source = noInFolder ? `${this.path}/${file}` : `${this.path}/${this.componentName}/${file}`;
-            const existsDir = (0, fs_extra_1.existsSync)(source);
-            if (!existsDir) {
+        this.generateFile = (template, file, noFolder) => {
+            const source = noFolder ? `${this.path}/${file}` : `${this.path}/${this.componentName}/${file}`;
+            const existsFile = (0, fs_extra_1.existsSync)(source);
+            if (!existsFile) {
                 try {
                     const templateParse = template.replaceAll(core_1.NAME, this.componentName);
                     (0, fs_extra_1.createFileSync)(source);
@@ -37,9 +37,8 @@ class GeneratorComponent {
                 console.error(`File ${source} already exists.`);
             }
         };
-        this.generateComponent = (storybook) => {
-            const importReact = `import React from "react";\n`;
-            this.generateFile(`${storybook ? importReact : ''}${component_1.default}`, `${this.componentName}.tsx`);
+        this.generateComponent = (storybook, noFolder) => {
+            this.generateFile((0, component_1.default)(storybook, noFolder), `${this.componentName}.tsx`, noFolder);
         };
         this.generateExportFile = () => {
             this.generateFile(export_1.default, `index.ts`);
@@ -51,11 +50,13 @@ class GeneratorComponent {
             this.path = (0, pathParse_1.pathParse)(this.pathProp);
             this.componentName = this.componentNameProp;
         };
-        this.generateReact = () => {
+        this.generateReact = (noFolder) => {
             this.configureHandle();
-            this.generateComponent();
-            this.generateExportFile();
-            this.generateModuleCss();
+            this.generateComponent(false, noFolder);
+            if (!noFolder) {
+                this.generateExportFile();
+                this.generateModuleCss();
+            }
         };
         this.generateStorybook = () => {
             this.configureHandle();
