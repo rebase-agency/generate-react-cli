@@ -16,8 +16,8 @@ export class GeneratorComponent {
 
   private generateFile = (template: string, file: string, noInFolder?: boolean) => {
     const source = noInFolder ? `${this.path}/${file}` : `${this.path}/${this.componentName}/${file}`
-    const existsDir = existsSync(source)
-    if (!existsDir) {
+    const existsFile = existsSync(source)
+    if (!existsFile) {
       try {
         const templateParse = template.replaceAll(NAME, this.componentName)
         createFileSync(source)
