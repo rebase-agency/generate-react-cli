@@ -19,7 +19,7 @@ generate-react [options] <component> [path]
   npx generate-react Box ./src/components
 ```
 
-This command will create a folder with your component name within your default (e.g. **src/components**) directory, and its corresponding files.
+This command will create a folder with your component name in the specified path (e.g. **src/components**) directory, and its corresponding files.
 
 #### Example of the component files structure:
 
