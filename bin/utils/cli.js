@@ -19,10 +19,7 @@ const cli = () => {
         .option("-nf --noFolder", "Generate only one React component.")
         .action((component, path, options) => {
         const generatorComponent = new generator_component_1.GeneratorComponent(path ?? '.', component);
-        if (component === '_') {
-            generatorComponent.generateCommonExport();
-        }
-        else if (options.storybook) {
+        if (options.storybook) {
             generatorComponent.generateStorybook();
         }
         else if (options.hook) {
@@ -34,6 +31,13 @@ const cli = () => {
         else {
             generatorComponent.generateReact(options.noFolder);
         }
+    });
+    program
+        .command("export [source]")
+        .description("Generate the public export file for all components in source folder.")
+        .action((source) => {
+        const generatorComponent = new generator_component_1.GeneratorComponent(source ?? '.', '');
+        generatorComponent.generateCommonExport();
     });
     program.parse();
 };

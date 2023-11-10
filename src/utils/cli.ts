@@ -19,9 +19,7 @@ export const cli = () => {
     .action((component, path, options) => {
       const generatorComponent = new GeneratorComponent(path ?? '.', component)
 
-      if (component === '_') {
-        generatorComponent.generateCommonExport()
-      } else if (options.storybook) {
+      if (options.storybook) {
         generatorComponent.generateStorybook()
       } else if (options.hook) {
         generatorComponent.generateHook()
@@ -30,6 +28,14 @@ export const cli = () => {
       } else {
         generatorComponent.generateReact(options.noFolder)
       }
+    })
+
+  program
+    .command("export [source]")
+    .description("Generate the public export file for all components in source folder.")
+    .action((source) => {
+      const generatorComponent = new GeneratorComponent(source ?? '.', '')
+      generatorComponent.generateCommonExport()
     })
 
   program.parse()

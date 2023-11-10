@@ -58,15 +58,15 @@ This command will create a folder with your component name in the specified path
     </td>
   </tr>
   <tr>
-    <td width="20%"><b>-hk</b></td>
-    <td width="80%">
-      Generate the hook file with default code.
-    </td>
-  </tr>
-  <tr>
     <td width="20%"><b>-c</b></td>
     <td width="80%">
       Generate the context files for project.
+    </td>
+  </tr>
+  <tr>
+    <td width="20%"><b>-hk</b></td>
+    <td width="80%">
+      Generate the hook file with default code.
     </td>
   </tr>
   <tr>
@@ -76,3 +76,38 @@ This command will create a folder with your component name in the specified path
     </td>
   </tr>
 </table>
+
+## Generate public export file
+
+This command will create a `index.ts` file with export yours components in the specified path (e.g. **src/components**) directory. The command overwrites the `index.ts` file.
+
+```shell
+generate-react export ./src/components
+```
+
+#### Example
+
+For example, you have `./src/components` with the following component folders:
+
+```
+|-- /src
+    |-- /components
+        |-- /Box
+        |-- /Modal
+        |-- /Button
+        |-- /Card
+```
+
+Then the `export` command will generate a file `index.ts` with the following content:
+
+```tsx
+export { Box } from "./Box";
+export { Button } from "./Button";
+export { Card } from "./Card";
+export { Modal } from "./Modal";
+```
+
+## License
+
+@rebase-agency/generate-react-cli is an open source software licensed as [MIT](https://github.com/rebase-agency/generate-react-cli/blob/main/LICENSE).
+
