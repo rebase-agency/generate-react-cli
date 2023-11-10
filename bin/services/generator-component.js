@@ -35,8 +35,7 @@ class GeneratorComponent {
             this.generateUtil('', `${this.componentName}.module.css`);
         };
         this.configureHandle = () => {
-            this.path = this.pathProp;
-            (0, pathParse_1.pathParse)(this.pathProp);
+            this.path = (0, pathParse_1.pathParse)(this.pathProp);
             this.componentName = this.componentNameProp;
             const existsDir = (0, fs_extra_1.existsSync)(`${this.path}/${this.componentName}`);
             if (existsDir) {

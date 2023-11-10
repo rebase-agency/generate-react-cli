@@ -19,6 +19,9 @@
   "files": [
     "bin"
   ],
+  "bin": {
+    "g": "./build/index.js"
+  },
   "main": "bin/index.js",
   "module": "bin/index.js",
   "types": "./bin/index.d.ts",
