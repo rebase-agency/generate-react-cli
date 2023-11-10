@@ -10,6 +10,7 @@ const export_1 = __importDefault(require("../templates/export"));
 const docs_1 = __importDefault(require("../templates/docs"));
 const readme_1 = __importDefault(require("../templates/readme"));
 const stories_1 = __importDefault(require("../templates/stories"));
+const hook_1 = __importDefault(require("../templates/hook"));
 const core_1 = require("../core");
 const pathParse_1 = require("../utils/pathParse");
 class GeneratorComponent {
@@ -18,52 +19,55 @@ class GeneratorComponent {
         this.componentNameProp = componentNameProp;
         this.componentName = '';
         this.path = '';
-        this.generateUtil = (template, file) => {
-            const source = `${this.path}/${this.componentName}/${file}`;
-            try {
-                const templateParse = template.replaceAll(core_1.NAME, this.componentName);
-                (0, fs_extra_1.createFileSync)(source);
-                (0, fs_extra_1.writeFileSync)(source, templateParse);
+        this.generateFile = (template, file, noInFolder) => {
+            const source = noInFolder ? `${this.path}/${file}` : `${this.path}/${this.componentName}/${file}`;
+            const existsDir = (0, fs_extra_1.existsSync)(source);
+            if (!existsDir) {
+                try {
+                    const templateParse = template.replaceAll(core_1.NAME, this.componentName);
+                    (0, fs_extra_1.createFileSync)(source);
+                    (0, fs_extra_1.writeFileSync)(source, templateParse);
+                }
+                catch (e) {
+                    console.error(e);
+                }
             }
-            catch (e) {
-                console.error(e);
+            else {
+                console.error(`File ${source} already exists.`);
             }
         };
         this.generateComponent = (storybook) => {
             const importReact = `import React from "react";\n`;
-            this.generateUtil(`${storybook ? importReact : ''}${component_1.default}`, `${this.componentName}.tsx`);
+            this.generateFile(`${storybook ? importReact : ''}${component_1.default}`, `${this.componentName}.tsx`);
         };
         this.generateExportFile = () => {
-            this.generateUtil(export_1.default, `index.ts`);
+            this.generateFile(export_1.default, `index.ts`);
         };
         this.generateModuleCss = () => {
-            this.generateUtil('', `${this.componentName}.module.css`);
+            this.generateFile('', `${this.componentName}.module.css`);
         };
         this.configureHandle = () => {
             this.path = (0, pathParse_1.pathParse)(this.pathProp);
             this.componentName = this.componentNameProp;
-            const existsDir = (0, fs_extra_1.existsSync)(`${this.path}/${this.componentName}`);
-            if (existsDir) {
-                console.error(`Folder with ${this.componentName} component in ${process.cwd()}/${this.path} already exists.`);
-            }
-            return !existsDir;
         };
         this.generateReact = () => {
-            if (this.configureHandle()) {
-                this.generateComponent();
-                this.generateExportFile();
-                this.generateModuleCss();
-            }
+            this.configureHandle();
+            this.generateComponent();
+            this.generateExportFile();
+            this.generateModuleCss();
         };
         this.generateStorybook = () => {
-            if (this.configureHandle()) {
-                this.generateComponent(true);
-                this.generateExportFile();
-                this.generateModuleCss();
-                this.generateUtil(docs_1.default, `Docs.mdx`);
-                this.generateUtil(readme_1.default, `README.md`);
-                this.generateUtil(stories_1.default, `${this.componentName}.stories.tsx`);
-            }
+            this.configureHandle();
+            this.generateComponent(true);
+            this.generateExportFile();
+            this.generateModuleCss();
+            this.generateFile(docs_1.default, `Docs.mdx`);
+            this.generateFile(readme_1.default, `README.md`);
+            this.generateFile(stories_1.default, `${this.componentName}.stories.tsx`);
+        };
+        this.generateHook = () => {
+            this.configureHandle();
+            this.generateFile(hook_1.default, `${this.componentName}.tsx`, true);
         };
     }
 }

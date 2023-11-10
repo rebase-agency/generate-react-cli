@@ -13,11 +13,14 @@ export const cli = () => {
     .argument("<component>", "The component name.")
     .argument("[path]", "The path where the component will get generated in.")
     .option("-s, --storybook", "Generate the component files for storybook project.")
+    .option("--hook", "Generate the hook file with default code")
     .action((component, path, options) => {
       const generatorComponent = new GeneratorComponent(path ?? '.', component)
 
       if (options.storybook) {
         generatorComponent.generateStorybook()
+      } else if (options.hook) {
+        generatorComponent.generateHook()
       } else {
         generatorComponent.generateReact()
       }

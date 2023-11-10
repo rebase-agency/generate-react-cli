@@ -4,6 +4,7 @@ import exportTemplate from "../templates/export";
 import docsTemplate from "../templates/docs"
 import readmeTemplate from "../templates/readme"
 import storiesTemplate from "../templates/stories";
+import hookTemplate from "../templates/hook"
 import { NAME } from "../core";
 import {pathParse} from "../utils/pathParse";
 
@@ -12,57 +13,59 @@ export class GeneratorComponent {
   private componentName: string = ''
   private path: string = ''
 
-  private generateUtil = (template: string, file: string) => {
-    const source = `${this.path}/${this.componentName}/${file}`
-    try {
-      const templateParse = template.replaceAll(NAME, this.componentName)
-      createFileSync(source)
-      writeFileSync(source, templateParse)
-    } catch (e) {
-      console.error(e)
+  private generateFile = (template: string, file: string, noInFolder?: boolean) => {
+    const source = noInFolder ? `${this.path}/${file}` : `${this.path}/${this.componentName}/${file}`
+    const existsDir = existsSync(source)
+    if (!existsDir) {
+      try {
+        const templateParse = template.replaceAll(NAME, this.componentName)
+        createFileSync(source)
+        writeFileSync(source, templateParse)
+      } catch (e) {
+        console.error(e)
+      }
+    } else {
+      console.error(`File ${source} already exists.`)
     }
   }
 
   private generateComponent = (storybook?: boolean) => {
     const importReact = `import React from "react";\n`
-    this.generateUtil(`${storybook ? importReact : ''}${componentTemplate}`, `${this.componentName}.tsx`)
+    this.generateFile(`${storybook ? importReact : ''}${componentTemplate}`, `${this.componentName}.tsx`)
   }
 
   private generateExportFile = () => {
-    this.generateUtil(exportTemplate, `index.ts`)
+    this.generateFile(exportTemplate, `index.ts`)
   }
 
   private generateModuleCss = () => {
-    this.generateUtil('', `${this.componentName}.module.css`)
+    this.generateFile('', `${this.componentName}.module.css`)
   }
 
   private configureHandle = () => {
     this.path = pathParse(this.pathProp)
     this.componentName = this.componentNameProp
-
-    const existsDir = existsSync(`${this.path}/${this.componentName}`)
-    if (existsDir) {
-      console.error(`Folder with ${this.componentName} component in ${process.cwd()}/${this.path} already exists.`)
-    }
-    return !existsDir;
   }
 
   generateReact = () => {
-    if (this.configureHandle()) {
-      this.generateComponent()
-      this.generateExportFile()
-      this.generateModuleCss()
-    }
+    this.configureHandle()
+    this.generateComponent()
+    this.generateExportFile()
+    this.generateModuleCss()
   }
 
   generateStorybook = () => {
-    if (this.configureHandle()) {
-      this.generateComponent(true)
-      this.generateExportFile()
-      this.generateModuleCss()
-      this.generateUtil(docsTemplate, `Docs.mdx`)
-      this.generateUtil(readmeTemplate, `README.md`)
-      this.generateUtil(storiesTemplate, `${this.componentName}.stories.tsx`)
-    }
+    this.configureHandle()
+    this.generateComponent(true)
+    this.generateExportFile()
+    this.generateModuleCss()
+    this.generateFile(docsTemplate, `Docs.mdx`)
+    this.generateFile(readmeTemplate, `README.md`)
+    this.generateFile(storiesTemplate, `${this.componentName}.stories.tsx`)
+  }
+
+  generateHook = () => {
+    this.configureHandle()
+    this.generateFile(hookTemplate, `${this.componentName}.tsx`, true)
   }
 }

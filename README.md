@@ -32,6 +32,18 @@ This command will create a folder with your component name in the specified path
             |-- index.ts
 ```
 
+#### Example of the Storybook with option `-s` component files structure:
+
+```
+|-- /Box
+    |-- Box.tsx
+    |-- Box.module.css
+    |-- Docs.mdx
+    |-- Box.stories.tsx
+    |-- README.md
+    |-- index.ts
+```
+
 ## Options
 
 <table>
@@ -43,6 +55,12 @@ This command will create a folder with your component name in the specified path
     <td width="20%"><b>-s</b></td>
     <td width="80%">
       Generate the component files for storybook project.  
+    </td>
+  </tr>
+  <tr>
+    <td width="20%"><b>--hook</b></td>
+    <td width="80%">
+      Generate the hook file with default code.
     </td>
   </tr>
 </table>
