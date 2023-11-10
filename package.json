@@ -20,11 +20,11 @@
     "bin"
   ],
   "bin": {
-    "g": "./build/index.js"
+    "g": "bin/index.js"
   },
   "main": "bin/index.js",
   "module": "bin/index.js",
-  "types": "./bin/index.d.ts",
+  "types": "bin/index.d.ts",
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
     "commander": "^11.1.0",
