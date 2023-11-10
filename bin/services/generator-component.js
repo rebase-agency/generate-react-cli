@@ -11,6 +11,7 @@ const docs_1 = __importDefault(require("../templates/docs"));
 const readme_1 = __importDefault(require("../templates/readme"));
 const stories_1 = __importDefault(require("../templates/stories"));
 const hook_1 = __importDefault(require("../templates/hook"));
+const context_1 = __importDefault(require("../templates/context"));
 const core_1 = require("../core");
 const pathParse_1 = require("../utils/pathParse");
 class GeneratorComponent {
@@ -68,6 +69,13 @@ class GeneratorComponent {
         this.generateHook = () => {
             this.configureHandle();
             this.generateFile(hook_1.default, `${this.componentName}.tsx`, true);
+        };
+        this.generateContext = () => {
+            this.configureHandle();
+            this.generateFile(context_1.default.context, `${this.componentName}Context.tsx`);
+            this.generateFile(context_1.default.hookContext, `use${this.componentName}Context.tsx`);
+            this.generateFile(context_1.default.types, "types.ts");
+            this.generateFile(context_1.default.exp, "index.ts");
         };
     }
 }

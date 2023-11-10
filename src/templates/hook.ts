@@ -1,6 +1,6 @@
 import {NAME} from "../core";
 
-export default `import { useState, useEffect } from 'React';
+export default `import { useState, useEffect } from 'react';
 
 interface Props {};
 

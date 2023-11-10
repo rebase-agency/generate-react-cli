@@ -14,7 +14,8 @@ const cli = () => {
         .argument("<component>", "The component name.")
         .argument("[path]", "The path where the component will get generated in.")
         .option("-s, --storybook", "Generate the component files for storybook project.")
-        .option("--hook", "Generate the hook file with default code")
+        .option("-c, --context", "Generate the context files for project.")
+        .option("-hk, --hook", "Generate the hook file with default code.")
         .action((component, path, options) => {
         const generatorComponent = new generator_component_1.GeneratorComponent(path ?? '.', component);
         if (options.storybook) {
@@ -22,6 +23,9 @@ const cli = () => {
         }
         else if (options.hook) {
             generatorComponent.generateHook();
+        }
+        else if (options.context) {
+            generatorComponent.generateContext();
         }
         else {
             generatorComponent.generateReact();

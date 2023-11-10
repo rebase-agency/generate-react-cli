@@ -5,6 +5,7 @@ import docsTemplate from "../templates/docs"
 import readmeTemplate from "../templates/readme"
 import storiesTemplate from "../templates/stories";
 import hookTemplate from "../templates/hook"
+import contextTemplates from "../templates/context"
 import { NAME } from "../core";
 import {pathParse} from "../utils/pathParse";
 
@@ -67,5 +68,13 @@ export class GeneratorComponent {
   generateHook = () => {
     this.configureHandle()
     this.generateFile(hookTemplate, `${this.componentName}.tsx`, true)
+  }
+
+  generateContext = () => {
+    this.configureHandle()
+    this.generateFile(contextTemplates.context, `${this.componentName}Context.tsx`)
+    this.generateFile(contextTemplates.hookContext, `use${this.componentName}Context.tsx`)
+    this.generateFile(contextTemplates.types, "types.ts")
+    this.generateFile(contextTemplates.exp, "index.ts")
   }
 }

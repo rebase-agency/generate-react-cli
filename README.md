@@ -58,9 +58,15 @@ This command will create a folder with your component name in the specified path
     </td>
   </tr>
   <tr>
-    <td width="20%"><b>--hook</b></td>
+    <td width="20%"><b>-hk</b></td>
     <td width="80%">
       Generate the hook file with default code.
+    </td>
+  </tr>
+  <tr>
+    <td width="20%"><b>-c</b></td>
+    <td width="80%">
+      Generate the context files for project.
     </td>
   </tr>
 </table>
