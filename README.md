@@ -27,7 +27,7 @@ This command will create a folder with your component name in the specified path
 |-- /src
     |-- /components
         |-- /Box
-            |-- Box.ts
+            |-- Box.tsx
             |-- Box.module.css
             |-- index.ts
 ```

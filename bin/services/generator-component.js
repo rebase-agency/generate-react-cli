@@ -30,8 +30,8 @@ class GeneratorComponent {
             }
         };
         this.generateComponent = (storybook) => {
-            const importReact = `import { React } from "React";\n`;
-            this.generateUtil(`${storybook ? importReact : ''}${component_1.default}`, `${this.componentName}.ts`);
+            const importReact = `import React from "react";\n`;
+            this.generateUtil(`${storybook ? importReact : ''}${component_1.default}`, `${this.componentName}.tsx`);
         };
         this.generateExportFile = () => {
             this.generateUtil(export_1.default, `index.ts`);
@@ -62,7 +62,7 @@ class GeneratorComponent {
                 this.generateModuleCss();
                 this.generateUtil(docs_1.default, `Docs.mdx`);
                 this.generateUtil(readme_1.default, `README.md`);
-                this.generateUtil(stories_1.default, `${this.componentName}.stories.ts`);
+                this.generateUtil(stories_1.default, `${this.componentName}.stories.tsx`);
             }
         };
     }

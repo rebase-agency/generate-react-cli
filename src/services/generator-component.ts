@@ -24,8 +24,8 @@ export class GeneratorComponent {
   }
 
   private generateComponent = (storybook?: boolean) => {
-    const importReact = `import { React } from "React";\n`
-    this.generateUtil(`${storybook ? importReact : ''}${componentTemplate}`, `${this.componentName}.ts`)
+    const importReact = `import React from "react";\n`
+    this.generateUtil(`${storybook ? importReact : ''}${componentTemplate}`, `${this.componentName}.tsx`)
   }
 
   private generateExportFile = () => {
@@ -62,7 +62,7 @@ export class GeneratorComponent {
       this.generateModuleCss()
       this.generateUtil(docsTemplate, `Docs.mdx`)
       this.generateUtil(readmeTemplate, `README.md`)
-      this.generateUtil(storiesTemplate, `${this.componentName}.stories.ts`)
+      this.generateUtil(storiesTemplate, `${this.componentName}.stories.tsx`)
     }
   }
 }
