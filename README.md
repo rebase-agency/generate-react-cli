@@ -10,13 +10,13 @@ npm install -g @rebase-agency/generate-react-cli
 
 ## Usage
 ```shell
-generate-react [options] <component> [path]
+npx generate-react [options] <component> [path]
 ```
 
 ## Generate Components
 
 ```shell
-  npx generate-react Box ./src/components
+npx generate-react Box ./src/components
 ```
 
 This command will create a folder with your component name in the specified path (e.g. **src/components**) directory, and its corresponding files.
@@ -82,7 +82,7 @@ This command will create a folder with your component name in the specified path
 This command will create a `index.ts` file with export yours components in the specified path (e.g. **src/components**) directory. The command overwrites the `index.ts` file.
 
 ```shell
-generate-react export ./src/components
+npx generate-react export ./src/components
 ```
 
 #### Example
