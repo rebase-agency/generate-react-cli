@@ -2,6 +2,8 @@
 
 ![version](https://img.shields.io/npm/v/@rebase-agency/generate-react-cli) [![License](https://img.shields.io/npm/l/express.svg)](https://github.com/rebase-agency/generate-react-cli/blob/master/LICENSE)
 
+CLI for generate React component files. To help speed up productivity in React projects and stop copying, pasting, and renaming files each time you want to create a new component.
+
 ## Installation
 
 ```shell
@@ -93,9 +95,9 @@ For example, you have `./src/components` with the following component folders:
 |-- /src
     |-- /components
         |-- /Box
-        |-- /Modal
         |-- /Button
         |-- /Card
+        |-- /Modal
 ```
 
 Then the `export` command will generate a file `index.ts` with the following content:
@@ -110,4 +112,3 @@ export { Modal } from "./Modal";
 ## License
 
 @rebase-agency/generate-react-cli is an open source software licensed as [MIT](https://github.com/rebase-agency/generate-react-cli/blob/main/LICENSE).
-
