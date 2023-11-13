@@ -3,6 +3,7 @@
 ![version](https://img.shields.io/npm/v/@rebase-agency/generate-react-cli) [![License](https://img.shields.io/npm/l/express.svg)](https://github.com/rebase-agency/generate-react-cli/blob/master/LICENSE)
 
 CLI for generating React component files. To help speed up productivity in React projects and stop copying, pasting, and renaming files each time you want to create a new component.
+This tool create components with `ts`
 
 ## Installation
 
@@ -75,6 +76,12 @@ This command will create a folder with your component name in the specified path
     <td width="20%"><b>-nf</b></td>
     <td width="80%">
       Generate only one React component (without export and css module files).
+    </td>
+  </tr>
+  <tr>
+    <td width="20%"><b>-nc</b></td>
+    <td width="80%">
+      Generate the React components without css module file.
     </td>
   </tr>
 </table>

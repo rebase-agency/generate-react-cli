@@ -1,7 +1,7 @@
 import { NAME } from "../core";
 
-const componentTemplate = (storybook?: boolean, noFolder?: boolean) => `${storybook ? `import React from "react";
-` : ''}${!noFolder ? `import styles from "./${NAME}.module.css";
+const componentTemplate = (storybook?: boolean, noFolder?: boolean, noCss?: boolean) => `${storybook ? `import React from "react";
+` : ''}${!noFolder && !noCss ? `import styles from "./${NAME}.module.css";
 
 ` : ''}interface ${NAME}Props {};
 

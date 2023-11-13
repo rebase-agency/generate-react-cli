@@ -17,6 +17,7 @@ const cli = () => {
         .option("-c, --context", "Generate the context files for project.")
         .option("-hk, --hook", "Generate the hook file with default code.")
         .option("-nf --noFolder", "Generate only one React component.")
+        .option("-nc --noCss", "Generate the React components without css module file.")
         .action((component, path, options) => {
         const generatorComponent = new generator_component_1.GeneratorComponent(path ?? '.', component);
         if (options.storybook) {
@@ -29,7 +30,7 @@ const cli = () => {
             generatorComponent.generateContext();
         }
         else {
-            generatorComponent.generateReact(options.noFolder);
+            generatorComponent.generateReact(options.noFolder, options.noCss);
         }
     });
     program

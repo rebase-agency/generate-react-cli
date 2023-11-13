@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("../core");
-const componentTemplate = (storybook, noFolder) => `${storybook ? `import React from "react";
-` : ''}${!noFolder ? `import styles from "./${core_1.NAME}.module.css";
+const componentTemplate = (storybook, noFolder, noCss) => `${storybook ? `import React from "react";
+` : ''}${!noFolder && !noCss ? `import styles from "./${core_1.NAME}.module.css";
 
 ` : ''}interface ${core_1.NAME}Props {};
 

@@ -30,8 +30,8 @@ export class GeneratorComponent {
     }
   }
 
-  private generateComponent = (storybook?: boolean, noFolder?: boolean) => {
-    this.generateFile(componentTemplate(storybook, noFolder), `${this.componentName}.tsx`, noFolder)
+  private generateComponent = (storybook?: boolean, noFolder?: boolean, noCss?: boolean) => {
+    this.generateFile(componentTemplate(storybook, noFolder, noCss), `${this.componentName}.tsx`, noFolder)
   }
 
   private generateExportFile = () => {
@@ -47,12 +47,14 @@ export class GeneratorComponent {
     this.componentName = this.componentNameProp
   }
 
-  generateReact = (noFolder?: boolean) => {
+  generateReact = (noFolder?: boolean, noCss?: boolean) => {
     this.configureHandle()
-    this.generateComponent(false, noFolder)
+    this.generateComponent(false, noFolder, noCss)
     if (!noFolder) {
       this.generateExportFile()
-      this.generateModuleCss()
+      if (!noCss) {
+        this.generateModuleCss()
+      }
     }
   }
 
