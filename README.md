@@ -2,7 +2,7 @@
 
 ![version](https://img.shields.io/npm/v/@rebase-agency/generate-react-cli) [![License](https://img.shields.io/npm/l/express.svg)](https://github.com/rebase-agency/generate-react-cli/blob/master/LICENSE)
 
-CLI for generate React component files. To help speed up productivity in React projects and stop copying, pasting, and renaming files each time you want to create a new component.
+CLI for generating React component files. To help speed up productivity in React projects and stop copying, pasting, and renaming files each time you want to create a new component.
 
 ## Installation
 
