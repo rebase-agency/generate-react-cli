@@ -52,7 +52,6 @@ class GeneratorComponent {
             this.componentName = this.componentNameProp;
         };
         this.generateReact = (noFolder, noCss, withProps) => {
-            console.log(withProps);
             this.configureHandle();
             this.generateComponent(false, noFolder, noCss, withProps);
             if (!noFolder) {

@@ -1,7 +1,7 @@
 import { NAME } from "../core";
 
 const componentTemplate = (storybook?: boolean, noFolder?: boolean, noCss?: boolean, withProps?: boolean) => `${storybook ? `import React from "react";
-` : ''}${!noFolder && !noCss ? `import styles from "./${NAME}.module.css";
+` : ''}${!noFolder && !noCss ? `import classes from "./${NAME}.module.css";
 ` : ''}${!!withProps ? `
 interface ${NAME}Props {}
 ` : ""}

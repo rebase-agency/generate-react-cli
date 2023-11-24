@@ -22,7 +22,6 @@ const cli = () => {
         .option("-p --props", "Generate the React components with props types template.")
         .action((component, path, options) => {
         const generatorComponent = new generator_component_1.GeneratorComponent(path ?? '.', component);
-        console.log(options);
         if (options.storybook) {
             generatorComponent.generateStorybook();
         }
