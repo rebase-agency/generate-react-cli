@@ -1,11 +1,11 @@
 import { NAME } from "../core";
 
-const componentTemplate = (storybook?: boolean, noFolder?: boolean, noCss?: boolean) => `${storybook ? `import React from "react";
+const componentTemplate = (storybook?: boolean, noFolder?: boolean, noCss?: boolean, withProps?: boolean) => `${storybook ? `import React from "react";
 ` : ''}${!noFolder && !noCss ? `import styles from "./${NAME}.module.css";
-
-` : ''}interface ${NAME}Props {}
-
-export const ${NAME} = ({}: ${NAME}Props) => {
+` : ''}${!!withProps ? `
+interface ${NAME}Props {}
+` : ""}
+export const ${NAME} = (${!!withProps ? `{}: ${NAME}Props` : ""}) => {
   return (
     <div>${NAME}</div>
   );

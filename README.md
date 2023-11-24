@@ -90,6 +90,12 @@ This command will create a folder with your component name in the specified path
       Generate files for svg icon component.
     </td>
   </tr>
+  <tr>
+    <td width="20%"><b>-p</b></td>
+    <td width="80%">
+      Generate the React components with props types template.
+    </td>
+  </tr>
 </table>
 
 ## Generate public export file

@@ -38,8 +38,8 @@ class GeneratorComponent {
                 console.error(`File ${source} already exists.`);
             }
         };
-        this.generateComponent = (storybook, noFolder, noCss) => {
-            this.generateFile((0, component_1.default)(storybook, noFolder, noCss), `${this.componentName}.tsx`, noFolder);
+        this.generateComponent = (storybook, noFolder, noCss, withProps) => {
+            this.generateFile((0, component_1.default)(storybook, noFolder, noCss, withProps), `${this.componentName}.tsx`, noFolder);
         };
         this.generateExportFile = () => {
             this.generateFile(export_1.default, `index.ts`);
@@ -51,9 +51,10 @@ class GeneratorComponent {
             this.path = (0, pathParse_1.pathParse)(this.pathProp);
             this.componentName = this.componentNameProp;
         };
-        this.generateReact = (noFolder, noCss) => {
+        this.generateReact = (noFolder, noCss, withProps) => {
+            console.log(withProps);
             this.configureHandle();
-            this.generateComponent(false, noFolder, noCss);
+            this.generateComponent(false, noFolder, noCss, withProps);
             if (!noFolder) {
                 this.generateExportFile();
                 if (!noCss) {

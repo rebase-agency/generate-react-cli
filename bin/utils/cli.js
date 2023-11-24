@@ -19,8 +19,10 @@ const cli = () => {
         .option("-nf --noFolder", "Generate only one React component.")
         .option("-nc --noCss", "Generate the React components without css module file.")
         .option("-i --icon", "Generate files for svg icon component.")
+        .option("-p --props", "Generate the React components with props types template.")
         .action((component, path, options) => {
         const generatorComponent = new generator_component_1.GeneratorComponent(path ?? '.', component);
+        console.log(options);
         if (options.storybook) {
             generatorComponent.generateStorybook();
         }
@@ -34,7 +36,7 @@ const cli = () => {
             generatorComponent.generateIcon();
         }
         else {
-            generatorComponent.generateReact(options.noFolder, options.noCss);
+            generatorComponent.generateReact(options.noFolder, options.noCss, options.props);
         }
     });
     program
