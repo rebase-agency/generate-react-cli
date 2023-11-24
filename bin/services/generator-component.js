@@ -12,6 +12,7 @@ const readme_1 = __importDefault(require("../templates/readme"));
 const stories_1 = __importDefault(require("../templates/stories"));
 const hook_1 = __importDefault(require("../templates/hook"));
 const context_1 = __importDefault(require("../templates/context"));
+const icon_1 = __importDefault(require("../templates/icon"));
 const core_1 = require("../core");
 const pathParse_1 = require("../utils/pathParse");
 class GeneratorComponent {
@@ -90,6 +91,11 @@ class GeneratorComponent {
                 }
             });
             this.generateFile(content, 'index.ts', true, true);
+        };
+        this.generateIcon = () => {
+            this.configureHandle();
+            this.generateFile(icon_1.default, `${this.componentName}.tsx`);
+            this.generateExportFile();
         };
     }
 }

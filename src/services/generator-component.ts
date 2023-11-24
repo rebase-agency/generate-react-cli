@@ -6,6 +6,7 @@ import readmeTemplate from "../templates/readme"
 import storiesTemplate from "../templates/stories";
 import hookTemplate from "../templates/hook"
 import contextTemplates from "../templates/context"
+import iconTemplate from "../templates/icon"
 import { NAME } from "../core";
 import {pathParse} from "../utils/pathParse";
 
@@ -91,5 +92,11 @@ export class GeneratorComponent {
       }
     })
     this.generateFile(content, 'index.ts', true, true)
+  }
+
+  generateIcon = () => {
+    this.configureHandle()
+    this.generateFile(iconTemplate, `${this.componentName}.tsx`)
+    this.generateExportFile()
   }
 }

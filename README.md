@@ -84,6 +84,12 @@ This command will create a folder with your component name in the specified path
       Generate the React components without css module file.
     </td>
   </tr>
+  <tr>
+    <td width="20%"><b>-i</b></td>
+    <td width="80%">
+      Generate files for svg icon component.
+    </td>
+  </tr>
 </table>
 
 ## Generate public export file

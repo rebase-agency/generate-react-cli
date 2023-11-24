@@ -18,6 +18,7 @@ const cli = () => {
         .option("-hk, --hook", "Generate the hook file with default code.")
         .option("-nf --noFolder", "Generate only one React component.")
         .option("-nc --noCss", "Generate the React components without css module file.")
+        .option("-i --icon", "Generate files for svg icon component.")
         .action((component, path, options) => {
         const generatorComponent = new generator_component_1.GeneratorComponent(path ?? '.', component);
         if (options.storybook) {
@@ -28,6 +29,9 @@ const cli = () => {
         }
         else if (options.context) {
             generatorComponent.generateContext();
+        }
+        else if (options.icon) {
+            generatorComponent.generateIcon();
         }
         else {
             generatorComponent.generateReact(options.noFolder, options.noCss);
