@@ -49,7 +49,6 @@ export class GeneratorComponent {
   }
 
   generateReact = (noFolder?: boolean, noCss?: boolean, withProps?: boolean) => {
-    console.log(withProps)
     this.configureHandle()
     this.generateComponent(false, noFolder, noCss, withProps)
     if (!noFolder) {

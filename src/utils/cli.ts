@@ -22,8 +22,6 @@ export const cli = () => {
     .action((component, path, options) => {
       const generatorComponent = new GeneratorComponent(path ?? '.', component)
 
-      console.log(options)
-
       if (options.storybook) {
         generatorComponent.generateStorybook()
       } else if (options.hook) {
