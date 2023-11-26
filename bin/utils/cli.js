@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.cli = void 0;
 const generator_component_1 = require("../services/generator-component");
 const commander_1 = require("commander");
+const generator_module_1 = require("../services/generator-module");
 const packageJson = require('../../package.json');
 const cli = () => {
     const program = new commander_1.Command();
@@ -44,6 +45,14 @@ const cli = () => {
         .action((source) => {
         const generatorComponent = new generator_component_1.GeneratorComponent(source ?? '.', '');
         generatorComponent.generateCommonExport();
+    });
+    program
+        .command("m")
+        .argument("<component>", "The component name.")
+        .argument("[source]", "The path where the component will get generated in.")
+        .action((component, source) => {
+        const generateModule = new generator_module_1.GeneratorModule(source ?? '.', component);
+        generateModule.generate();
     });
     program.parse();
 };

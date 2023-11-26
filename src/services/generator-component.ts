@@ -1,4 +1,4 @@
-import {createFileSync, existsSync, writeFileSync, readdirSync} from 'fs-extra';
+import {createFileSync, existsSync, writeFileSync, readdirSync, mkdirSync} from 'fs-extra';
 import componentTemplate from "../templates/component";
 import exportTemplate from "../templates/export";
 import docsTemplate from "../templates/docs"

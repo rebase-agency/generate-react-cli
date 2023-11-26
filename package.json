@@ -1,6 +1,6 @@
 {
   "name": "@rebase-agency/generate-react-cli",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "author": "rebase",
   "license": "MIT",
   "description": "CLI for generating React component files.",

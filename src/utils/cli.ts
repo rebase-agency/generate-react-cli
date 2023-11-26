@@ -1,5 +1,6 @@
 import {GeneratorComponent} from "../services/generator-component";
 import { Command } from 'commander'
+import {GeneratorModule} from "../services/generator-module";
 const packageJson = require('../../package.json')
 
 export const cli = () => {
@@ -41,6 +42,15 @@ export const cli = () => {
     .action((source) => {
       const generatorComponent = new GeneratorComponent(source ?? '.', '')
       generatorComponent.generateCommonExport()
+    })
+
+  program
+    .command("m")
+    .argument("<component>", "The component name.")
+    .argument("[source]", "The path where the component will get generated in.")
+    .action((component, source) => {
+      const generateModule = new GeneratorModule(source ?? '.', component)
+      generateModule.generate()
     })
 
   program.parse()
